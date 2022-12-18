@@ -18,6 +18,7 @@ describe Game do
     expect(new_game.count_nils).not_to eq(8)
   end
   end
+end
 
   describe '#add_move' do
 
@@ -74,7 +75,7 @@ describe Game do
       no_win_line1 = [nil, nil, 'O', 'O', nil, nil, nil, nil, nil, nil]
       new_game.instance_variable_set(:@board_state, no_win_line1)
 
-      expect(new_game.check_win).not_to be(true)
+      expect(new_game.check_win).to be(false)
     end
   end
 
@@ -100,7 +101,7 @@ describe Game do
       win_line1 = [nil, 'O', 'O', 'O', nil, nil, nil, nil, nil, nil]
       new_game.instance_variable_set(:@board_state, win_line1)
 
-      expect(new_game).to receive(:p).with("O")
+      expect(new_game).to receive(:p).with("Player1")
       new_game.round_play
     end
 
@@ -108,14 +109,13 @@ describe Game do
       win_line1 = [nil, 'X', nil, nil, 'X', nil, nil, 'X', nil, nil]
       new_game.instance_variable_set(:@board_state, win_line1)
 
-      expect(new_game).to receive(:p).with("X")
+      expect(new_game).to receive(:p).with("Player2")
       new_game.round_play
     end
 
 
   end
 
-end
 end
 
 
